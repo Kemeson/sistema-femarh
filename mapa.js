@@ -4,7 +4,7 @@ var basemap = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 });
 
 var thetrail = L.geoJSON(trail, {
-    color: '#0000FF',
+    color: 'red',
     weight: 3,
 });
 

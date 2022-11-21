@@ -9,6 +9,8 @@
 
 }
   </style>
+  
+
     <link rel="stylesheet" href="mapa.css"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +20,7 @@
     <link rel="stylesheet" href="leaflet/leaflet.css" />  
     <script src="leaflet/leaflet.js"></script>
     <script src="https://unpkg.com/@ngageoint/leaflet-geopackage@2.0.5/dist/leaflet-geopackage.min.js"></script>
-    <script src="map2.geojson"></script>
+    <script src="mapas/map2.geojson"></script>
 </head>
 <body>
 
@@ -26,7 +28,7 @@
   <div class="coll">
     <p>
       <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-        <img src="seta.png">
+        <img src="imagens/seta.png">
       </button>
     </p>
     <div style="min-height: 120px;">
@@ -100,11 +102,11 @@
           </button>
           
           <a class="navbar-brand" href="#" id="men">FEMARH</a>
-          <img src="logo-femarh2.png" id="fem">
+          <img src="imagens/logo-femarh2.png" id="fem">
                               
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header" style="background-color: rgb(28, 132, 83);" id="menu">
-              <img src="logo-femarh1.png"> 
+              <img src="imagens/logo-femarh1.png"> 
               <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MENU</h5>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -115,11 +117,11 @@
                       ÁREAS LICENCIADAS
                     </a>
                     <ul class="dropdown-menu dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Área do Projeto</a></li>
+                      <li><a class="dropdown-item" href="teste.php?param=areaproj">Área do Projeto</a></li>
                       <li>
                           <hr class="dropdown-divider">
                       </li>
-                      <li><a class="dropdown-item" href="#">Área do Imóvel</a></li>
+                      <li><a class="dropdown-item" href="teste.php?param=areaimov">Área do Imóvel</a></li>
                       <li>
                         <hr class="dropdown-divider">
                       </li>
@@ -210,7 +212,26 @@
       </nav>
     </div>
 
-    
+    <?php
+    $p = null;
+        switch ($p) {
+            case 0:
+                echo "<script>
+                    var thetr = L.geoJSON(tr, {
+                    color: '#0000FF',
+                    weight: 3,
+                });
+                </script>";
+                break;
+            case 1:
+                echo "i equals 1";
+                break;
+            case 2:
+                echo "i equals 2";
+                break;
+        }
+
+    ?>
     
 
     <script src="mapa.js"></script>
@@ -218,3 +239,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </html>
+
+
