@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <style>
-
-.leaflet-control-layers-toggle { 
-    width: 100px;
-    height: 1000px;
-
-}
-  </style>
-  
 
     <link rel="stylesheet" href="mapa.css"/>
     <meta charset="UTF-8">
@@ -18,12 +9,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Document</title>
     <link rel="stylesheet" href="leaflet/leaflet.css" />  
+    <link rel="stylesheet" href="leaflet/leaflet.groupedlayercontrol.min.css" />  
     <script src="leaflet/leaflet.js"></script>
     <script src="https://unpkg.com/@ngageoint/leaflet-geopackage@2.0.5/dist/leaflet-geopackage.min.js"></script>
     <script src="mapas/map2.geojson"></script>
+    <script src="mapas/map2copy.geojson"></script>
+    <script src="mapas/limites.geojson"></script> 
+    <link rel="stylesheet" href="./src/leaflet.groupedlayercontrol.css" />
+
+
 </head>
 <body>
 
+<script src="./src/leaflet.groupedlayercontrol.js"></script>
 
   <div class="coll">
     <p>
@@ -112,16 +110,17 @@
             </div>
             <div class="offcanvas-body" id="dropd">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li><a class="home" href="teste.php" style="text-decoration: none;">HOME</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       ÁREAS LICENCIADAS
                     </a>
                     <ul class="dropdown-menu dropdown-menu">
-                      <li><a class="dropdown-item" href="teste.php?param=areaproj">Área do Projeto</a></li>
+                      <li><a class="dropdown-item" href="#">Área do Projeto</a></li>
                       <li>
                           <hr class="dropdown-divider">
                       </li>
-                      <li><a class="dropdown-item" href="teste.php?param=areaimov">Área do Imóvel</a></li>
+                      <li><a class="dropdown-item" href="#">Área do Imóvel</a></li>
                       <li>
                         <hr class="dropdown-divider">
                       </li>
@@ -130,7 +129,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      ÁREAS INSTITUCIONAL
+                      ÁREAS INSTITUCIONAIS
                     </a>
                     <ul class="dropdown-menu dropdown-menu">
                       <li><a class="dropdown-item" href="#">Limite Terras Indígenas</a></li>
@@ -145,7 +144,7 @@
                       <li>
                         <hr class="dropdown-divider">
                       </li>
-                      <li><a class="dropdown-item" href="#">Área Inalienáveis</a></li>
+                      <li><a class="dropdown-item" href="#">Áreas Inalienáveis</a></li>
                       <li>
                         <hr class="dropdown-divider">
                       </li>
@@ -181,11 +180,11 @@
                       <li>
                           <hr class="dropdown-divider">
                       </li>
-                      <li><a class="dropdown-item" href="#">Limite Municipais</a></li>
+                      <li><a class="dropdown-item" href="#">Limites Municipais</a></li>
                       <li>
                         <hr class="dropdown-divider">
                       </li>
-                      <li><a class="dropdown-item" href="#">Sede Municipais</a></li>
+                      <li><a class="dropdown-item" href="#">Sedes Municipais</a></li>
                       <li>
                         <hr class="dropdown-divider">
                       </li>
@@ -212,29 +211,56 @@
       </nav>
     </div>
 
-    <?php
-    $p = null;
-        switch ($p) {
-            case 0:
-                echo "<script>
-                    var thetr = L.geoJSON(tr, {
-                    color: '#0000FF',
-                    weight: 3,
-                });
-                </script>";
-                break;
-            case 1:
-                echo "i equals 1";
-                break;
-            case 2:
-                echo "i equals 2";
-                break;
-        }
-
-    ?>
-    
 
     <script src="mapa.js"></script>
+<script>
+
+
+
+
+/**
+    var overlays = {'<span class='my-layer-item'>My Layer</span>':limite};
+
+
+    
+      
+
+    var layerControl = L.control.layers options(null, overlays, {position: 'topleft', collapsed:false}).addTo(map);
+*/
+
+var groupedOverlays = {
+  "Landmarks": {
+    "Motorways": motorways,
+    "Cities": cities
+  },
+  "Points of Interest": {
+    "Restaurants": restaurants
+  }
+};
+
+L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
+
+L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
+
+var options = {
+  // Make the "Landmarks" group exclusive (use radio inputs)
+  exclusiveGroups: ["Landmarks"],
+  // Show a checkbox next to non-exclusive group labels for toggling all
+  groupCheckboxes: true
+};
+
+L.control.groupedLayers(baseLayers, groupedOverlays, options).addTo(map);
+
+layerControl.addOverlay(cities, "Cities", "Landmarks");
+
+
+
+
+
+
+
+
+</script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

@@ -3,10 +3,16 @@ var baserelief = L.tileLayer('https://tile.opentopomap.org/{z}/{x}/{y}.png', {})
 var basemap = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 });
 
-var thetrail = L.geoJSON(trail, {
-    color: 'red',
+var thetrail = L.geoJSON(tr, {
+    color: 'blue',
     weight: 3,
 });
+
+var limites = L.geoJSON(limites, {
+    color: "black",
+    weight: 3,
+  });
+
 
 thetrail.bindTooltip('Roraima');
 
@@ -39,14 +45,19 @@ map.on('mousemove', function(e){
 var baselayers = {
     'Shaded Relief': baserelief,
     'National Map topo': basetopo,
-    'BaseMap':basemap
+    'BaseMap':basemap,
 };
 
-var overlays = {
-    'The Trail': thetrail
-};
 
-L.control.layers(baselayers, overlays, {position: 'topleft'}).addTo(map);
+
+
+
+
+
+
+  // Use the custom grouped layer control, not "L.control.layers"
+  L.control.groupedLayers(ExampleData.Basemaps, groupedOverlays).addTo(map);
+
 
 
 /*var scale = L.control.scale()
@@ -54,3 +65,6 @@ scale.addTo(map)*/
 
 map.attributionControl.addAttribution('National Map Topo');
 map.attributionControl.addAttribution('OpenTopoMap');   
+
+
+
