@@ -2,6 +2,23 @@
 <html lang="pt-br">
 <head>
 
+<style>
+
+.leaflet-control-layers-group-name {
+    font-weight: bold;
+    margin-bottom: .2em;
+    display: block;
+  }
+
+  .leaflet-control-layers-group {
+    margin-bottom: .5em;
+  }
+
+  .leaflet-control-layers-group label {
+    padding-left: .5em;
+  }
+</style>
+
     <link rel="stylesheet" href="mapa.css"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,44 +26,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Document</title>
     <link rel="stylesheet" href="leaflet/leaflet.css" />  
-    <link rel="stylesheet" href="leaflet/leaflet.groupedlayercontrol.min.css" />  
     <script src="leaflet/leaflet.js"></script>
     <script src="https://unpkg.com/@ngageoint/leaflet-geopackage@2.0.5/dist/leaflet-geopackage.min.js"></script>
     <script src="mapas/map2.geojson"></script>
     <script src="mapas/map2copy.geojson"></script>
     <script src="mapas/limites.geojson"></script> 
-    <link rel="stylesheet" href="./src/leaflet.groupedlayercontrol.css" />
-
-
+    <script src="src/leaflet.groupedlayercontrol.js"></script>
+    <script src="https://rawgithub.com/ismyrnow/Leaflet.groupedlayercontrol/master/src/leaflet.groupedlayercontrol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body>
 
-<script src="./src/leaflet.groupedlayercontrol.js"></script>
-
-  <div class="coll">
-    <p>
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-        <img src="imagens/seta.png">
-      </button>
-    </p>
-    <div style="min-height: 120px;">
-      <div class="collapse collapse-horizontal" id="collapseWidthExample">
-        <div class="card card-body" id="coluna">
-          <div class="col">
-            <h4 style="color: rgb(93, 67, 59)">Mineração</h4>
-          </div>
-            
-          <div class="col">
-            <h4 style="color: rgb(28, 132, 83)">Florestal</h4>
-          </div>
-
-          <div class="col">
-            <h4 style="color: rgb(13, 110, 253)">Outorga</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <div id="map"></div>
@@ -64,7 +54,7 @@
         fssrgfrdgtdrg
       </div>
     </div>
-<!----BT2--->>
+    <!----BT2--->
     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight" id="bt2">Florestal</button>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight2" aria-labelledby="offcanvasRightLabel">
@@ -76,7 +66,7 @@
         1321324
       </div>
     </div>
-<!----BT3--->>
+    <!----BT3--->
     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight3" aria-controls="offcanvasRight" id="bt3">Outorga</button>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight3" aria-labelledby="offcanvasRightLabel">
@@ -86,6 +76,22 @@
       </div>
       <div class="offcanvas-body">
         efwnb34454
+      </div>
+    </div>
+    <!----BT4--->
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight4" aria-controls="offcanvasRight" id="bt4">
+    <i class="bi bi-arrow-left"></i>
+    </button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight4" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header" id="canv4">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div></div><hr>
+        <div></div><hr>
+        <div></div>
       </div>
     </div>
 
@@ -213,52 +219,8 @@
 
 
     <script src="mapa.js"></script>
+
 <script>
-
-
-
-
-/**
-    var overlays = {'<span class='my-layer-item'>My Layer</span>':limite};
-
-
-    
-      
-
-    var layerControl = L.control.layers options(null, overlays, {position: 'topleft', collapsed:false}).addTo(map);
-*/
-
-var groupedOverlays = {
-  "Landmarks": {
-    "Motorways": motorways,
-    "Cities": cities
-  },
-  "Points of Interest": {
-    "Restaurants": restaurants
-  }
-};
-
-L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
-
-L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
-
-var options = {
-  // Make the "Landmarks" group exclusive (use radio inputs)
-  exclusiveGroups: ["Landmarks"],
-  // Show a checkbox next to non-exclusive group labels for toggling all
-  groupCheckboxes: true
-};
-
-L.control.groupedLayers(baseLayers, groupedOverlays, options).addTo(map);
-
-layerControl.addOverlay(cities, "Cities", "Landmarks");
-
-
-
-
-
-
-
 
 </script>
 
