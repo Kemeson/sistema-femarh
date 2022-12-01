@@ -3,21 +3,74 @@
 <head>
 
 <style>
+  .leaflet-control-layers-toggle.leaflet-layerstree-named-toggle {
+    margin: 2px 5px;
+    width: auto;
+    height: auto;
+    background-image: none;
+}
 
-.leaflet-control-layers-group-name {
+.leaflet-layerstree-node {
+
+}
+
+.leaflet-layerstree-header input{
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+
+.leaflet-layerstree-header {
+}
+
+.leaflet-layerstree-header-pointer {
     font-weight: bold;
-    margin-bottom: .2em;
-    display: block;
-  }
+    font-size: 15px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
 
-  .leaflet-control-layers-group {
-    margin-bottom: .5em;
-  }
+.leaflet-layerstree-header label {
+    display: inline-block;
+    cursor: pointer;
+}
 
-  .leaflet-control-layers-group label {
-    padding-left: .5em;
-  }
+.leaflet-layerstree-header-label {
+}
+
+.leaflet-layerstree-header-name {
+}
+
+.leaflet-layerstree-header-space {
+}
+
+.leaflet-layerstree-children {
+    padding-left: 10px;
+}
+
+.leaflet-layerstree-children-nopad {
+    padding-left: 0px;
+}
+
+.leaflet-layerstree-closed {
+}
+
+.leaflet-layerstree-opened {
+}
+
+.leaflet-layerstree-hide {
+    display: none;
+}
+
+.leaflet-layerstree-nevershow {
+    display: none;
+}
+
+.leaflet-layerstree-expand-collapse {
+    cursor: pointer;
+}
 </style>
+
 
     <link rel="stylesheet" href="mapa.css"/>
     <meta charset="UTF-8">
@@ -31,9 +84,10 @@
     <script src="mapas/map2.geojson"></script>
     <script src="mapas/map2copy.geojson"></script>
     <script src="mapas/limites.geojson"></script> 
-    <script src="src/leaflet.groupedlayercontrol.js"></script>
+    <script src="src/L.Control.Layers.Tree.js"></script>
     <script src="https://rawgithub.com/ismyrnow/Leaflet.groupedlayercontrol/master/src/leaflet.groupedlayercontrol.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
 
