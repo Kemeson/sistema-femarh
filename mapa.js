@@ -1,4 +1,4 @@
-  var lim = L.geoJSON(limites, {
+   var lim = L.geoJSON(limites, {
     color: "black",
     weight: 3,
     });
@@ -16,9 +16,12 @@
     }
       });
 
-<<<<<<<<< Temporary merge branch 1
-    var limit = new L.LayerGroup();
-    var geojsonLayer = new L.GeoJSON();
+    var geojsonLayer = new L.GeoJSON(geojsonLayer, {
+      color: "red",
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<h4>'+feature.id+'</h4><p>name: '+feature.name+'</p>');
+      }
+    });
 
     function handleJson(data) {
     console.log(data)
@@ -26,31 +29,12 @@
     }
     
     $.ajax({
-    url : "http://localhost:8080/geoserver/cite/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cite:view_terras_indigenas&maxFeatures=50&outputFormat=text/javascript&format_options=callback:getJson",
+    url : "http://localhost:8080/geoserver/cite/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cite:view_municipios_limites&maxFeatures=50&outputFormat=text/javascript&format_options=callback:getJson",
     dataType : 'jsonp',
     jsonpCallback: 'getJson',
     success : handleJson
     });
     
-    geojsonLayer.addTo(limit);
-=========
- 
-  var geojsonLayer = new L.GeoJSON(geojsonLayer, {
-    color: "red",
-    onEachFeature: function (feature, layer) {
-      layer.bindPopup('<h4>'+feature.id+'</h4><p>name: '+feature.properties.name+'</p>');
-    }  
-  });
->>>>>>>>> Temporary merge branch 2
-
-  
-  $.ajax({
-  url : "http://localhost:8080/geoserver/cite/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cite:view_municipios_limites&maxFeatures=50&outputFormat=text/javascript&format_options=callback:getJson",
-  dataType : 'jsonp',
-  jsonpCallback: 'getJson',
-  success : handleJson
-  });
-  
 
 
   var basemap = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
@@ -58,12 +42,6 @@
   var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
     subdomains:['mt0','mt1','mt2','mt3']
 });
-
-
-<<<<<<<<< Temporary merge branch 1
-
-=========
->>>>>>>>> Temporary merge branch 2
 
 
   var map = L.map(document.getElementById('map'), {
