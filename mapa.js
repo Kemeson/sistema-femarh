@@ -4,30 +4,27 @@
     });
     
 
-   var ror = L.geoJSON(tr, {
-    style: function(feature) {
-      switch (feature.properties.id) {
-          case '1400027': return {color: "black"};
-          case '1400050': return {color: "red"};
+     var ror = L.geoJSON(tr, {
+      style: function(feature) {
+        switch (feature.properties.id) {
+            case '1400027': return {color: "black"};
+            case '1400050': return {color: "red"};
+        }
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<h4>'+feature.properties.id+'</h4><p>name: '+feature.properties.name+'</p>');
       }
-    },
-    onEachFeature: function (feature, layer) {
-      layer.bindPopup('<h4>'+feature.properties.id+'</h4><p>name: '+feature.properties.name+'</p>');
-    }
-      });
+        });
 
- 
-  var geojsonLayer = new L.GeoJSON(geojsonLayer, {
-    color: "red",
-    onEachFeature: function (feature, layer) {
-      layer.bindPopup('<h4>'+feature.id+'</h4><p>name: '+feature.properties.name+'</p>');
-    }  
-  });
+    var limit = new L.LayerGroup();
+    L.geoJSON(limites, {
+      color: "black",
+      weight: 3,
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<h6>'+feature.id+'</h6><p>name: '+feature.properties.name+'</p>');
+      }
+      }).addTo(limit);
 
-  function handleJson(data) {
-  console.log(data)
-  geojsonLayer.addData(data);
-  }
   
   $.ajax({
   url : "http://localhost:8080/geoserver/cite/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cite:view_municipios_limites&maxFeatures=50&outputFormat=text/javascript&format_options=callback:getJson",
@@ -46,6 +43,7 @@
 
 
 
+    var motorways = L.tileLayer(cmUrl, {styleId: 46561, attribution: cmAttr});
 
   var map = L.map(document.getElementById('map'), {
     center: [1.50054, -60.6714],
